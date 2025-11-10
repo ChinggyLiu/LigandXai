@@ -12,7 +12,6 @@ To set up the environment, make sure Conda or Miniforge is installed. Then creat
    conda env create -f environment.yml
    conda activate rindti
 
-
-
-To execute the attribution pipeline:
+2. **To execute the attribution pipeline:**
+   ```bash
 snakemake -s attribution_pipeline/Snakefile --cores 1
