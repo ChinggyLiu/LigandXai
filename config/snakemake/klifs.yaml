@@ -1,0 +1,17 @@
+seed: 42
+source: datasets/klifs2/resources
+
+prots:
+  structs:
+    method: whole
+  features:
+    method: distance 
+    node_feats: onehot
+    edge_feats: none
+drugs:
+  node_feats: onehot
+  edge_feats: none 
+parse_dataset:
+  filtering: all # all, posneg, balanced
+  sampling: none # over, under, none
+  task: reg # class, reg 

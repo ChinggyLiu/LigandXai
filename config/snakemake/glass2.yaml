@@ -1,0 +1,20 @@
+seed: 150
+source: datasets/glass2/resources
+
+prots:
+  structs:
+    method: whole
+  features:
+    method: distance
+    node_feats: onehot
+    edge_feats: none
+drugs:
+  node_feats: onehot
+  edge_feats: none
+split_data:
+  method: random 
+  train: 0.7
+  val: 0.2
+parse_dataset:
+  filtering: all
+  task: reg

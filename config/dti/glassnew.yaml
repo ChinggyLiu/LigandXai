@@ -1,0 +1,70 @@
+seed: 42
+runs: 1
+exp_name: glassdruggin
+
+datamodule:
+  filename: datasets/glass/resultsdrug/prepare_all/wdonondanr_3aaa1904.pkl
+  exp_name: glassdruggin
+  batch_size: 256
+  num_workers: 4
+
+trainer:
+  devices: 1
+  max_epochs: 500
+  profiler: null
+
+early_stop:
+  patience: 50
+
+checkpoints:
+  monitor: val/loss
+  save_top_k: 3
+  mode: min
+
+model:
+  monitor: val_loss
+  module: reg
+  feat_method: concat
+
+  # Drug (Ligand) Configuration
+  drug:
+    method: graph
+    hidden_dim: 256
+    node:
+      module: ginconv
+      dropout: 0.1
+      hidden_dim: 256
+      num_layers: 4
+    pool:
+      module: mean
+      hidden_dim: 256
+
+  # Protein Configuration
+  prot:
+    method: graph
+    hidden_dim: 256
+    node:
+      module: ginconv
+      dropout: 0.1
+      hidden_dim: 256
+      num_layers: 4
+    pool:
+      module: mean
+      hidden_dim: 256
+
+  # Final MLP Layer Configuration (No input_dim specified)
+  mlp:
+    hidden_dim: 256
+    num_layers: 4
+    dropout: 0.2
+
+  optimizer:
+    module: adam
+    lr: 0.0001
+    prot_lr: 0.0001
+    drug_lr: 0.0001
+    weight_decay: 0.01
+    momentum: 0.01
+    reduce_lr:
+      factor: 0.1
+      patience: 20

@@ -1,0 +1,10 @@
+# Paths are relative to the project root (because of workdir: "..")
+
+# 1) Which dataset YAML to use
+data_config: "config/dti/glass.yaml"
+
+# 2) Which model checkpoint to load
+checkpoint: "tb_logsnew/dti_glassmodifiedtest/modifiedlatest_dataset/version_0/version_82/checkpoints/epoch=260-step=91611.ckpt"
+
+# 3) Where to write outputs
+output_dir: "attributions/glass"

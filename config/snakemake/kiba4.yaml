@@ -1,0 +1,21 @@
+seed: 250
+source: datasets/kiba4/resources
+
+prots:
+  structs:
+    method: whole
+  features:
+    method: distance 
+    node_feats: onehot
+    edge_feats: none
+drugs:
+  node_feats: onehot
+  edge_feats: none
+split_data:
+  method: random # random, target, drug
+  train: 0.7 # test is created as a remainder of train and val
+  val: 0.2
+parse_dataset:
+  filtering: all # all, posneg, balanced
+  sampling: none # over, under, none
+  task: reg # class, reg 

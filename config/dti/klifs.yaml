@@ -1,0 +1,70 @@
+seed: 42
+runs: 1
+exp_name: klifsonehot
+
+datamodule:
+  filename: datasets/klifs2/results/prepare_all/wdononanrr_5bf8328d.pkl
+  exp_name: klifonehot
+  batch_size: 128
+  num_workers: 4
+
+trainer:
+  devices: 1
+  max_epochs: 500
+  profiler: null
+
+early_stop:
+  patience: 100
+
+checkpoints:
+  monitor: val/loss
+  save_top_k: 2
+  mode: min
+
+model:
+  monitor: val_loss
+  module: reg
+  feat_method: concat
+
+  # Drug (Ligand) Configuration
+  drug:
+    method: graph
+    hidden_dim: 256
+    node:
+      module: ginconv
+      dropout: 0.1
+      hidden_dim: 256
+      num_layers: 4
+    pool:
+      module: mean
+      hidden_dim: 256
+
+  # Protein Configuration
+  prot:
+    method: graph
+    hidden_dim: 256
+    node:
+      module: ginconv
+      dropout: 0.1
+      hidden_dim: 256
+      num_layers: 4
+    pool:
+      module: mean
+      hidden_dim: 256
+
+  # Final MLP Layer Configuration (No input_dim specified)
+  mlp:
+    hidden_dim: 256
+    num_layers: 4
+    dropout: 0.2
+
+  optimizer:
+    module: adam
+    lr: 0.0001
+    prot_lr: 0.0001
+    drug_lr: 0.0001
+    weight_decay: 0.01
+    momentum: 0.01
+    reduce_lr:
+      factor: 0.1
+      patience: 20

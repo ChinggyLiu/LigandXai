@@ -1,0 +1,21 @@
+# logs / runs
+tb_logsnew/
+checkpoints/
+attributions/
+.snakemake/
+
+# data & datasets (do not version)
+data/
+datasets/
+
+# common heavy artifacts
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.npz
+*.npy
+*.zip
+*.tar
+*.tar.gz
+*.log
