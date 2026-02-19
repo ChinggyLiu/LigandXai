@@ -14,4 +14,4 @@ To set up the environment, make sure Conda or Miniforge is installed. Then creat
 
 2. **To execute the attribution pipeline:**
    ```bash
-   snakemake -s Snakefile --cores all
+   snakemake -s attribution_pipeline/Snakefile --cores 1

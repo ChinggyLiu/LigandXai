@@ -5,8 +5,8 @@ attributions/
 .snakemake/
 
 # data & datasets (do not version)
-data/
-datasets/
+/data/
+/datasets/
 
 # common heavy artifacts
 *.pt
